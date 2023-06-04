@@ -3,9 +3,11 @@ tBoard = {1: ' ', 2: ' ', 3: ' ',
           4: ' ', 5: ' ', 6: ' ',
           7: ' ', 8: ' ', 9: ' '}
 
+player = 'O'
+computer = 'X'
+
 #Printing the board
 def printBoard(tBoard):
-    print("\n")
     print(tBoard[1] + "|" + tBoard[2] + "|" + tBoard[3])
     print("-+-+-")
     print(tBoard[4] + "|" + tBoard[5] + "|" + tBoard[6])
@@ -14,31 +16,29 @@ def printBoard(tBoard):
     print("\n")
 
 #Checking if the selected position/space in the board is free
-def freeSpaceChecker(postion):
-    if tBoard(postion) == ' ':
+def freeSpaceChecker(position):
+    if tBoard[position] == ' ':
         return True
-    return False
+    else:
+        return False
 
 def insertLetter(playerMove, position):
-    if freeSpaceChecker(position) == ' ':
+    if freeSpaceChecker(position):
         tBoard[position] = playerMove
-        print(tBoard)
+        printBoard(tBoard)
 
         #Now checking if the move makes it a draw/win 
         if drawChecker():
             print("It's a DRAW!!")
             exit()
-        elif winnerChecker():
+        if winnerChecker():
             if playerMove == 'X':
                 print("Computer WINS!!")
                 exit()
             else:
                 print("Did you really just beat the AI??")
                 exit()
-        else:
-            print("ERROR!!")
-            print("Check your insertLetter():")
-            return
+        return
     else:
         print("Invalid MOVE!!")
         print("\n")
@@ -75,12 +75,21 @@ def drawChecker():
             return False
     return True
 
+def humanPlayerMove():
+    position = int(input("Enter a position for 'O': "))
+    insertLetter(player, position)
+    return
 
+def computerPlayerMove():
+    position = int(input("Enter a position for 'X': "))
+    insertLetter(computer, position)
+    return
 
-
-
-
-
-
+#Driver starts here
+print("\n")
 printBoard(tBoard)
 
+#Creating a game loop
+while not winnerChecker():
+    computerPlayerMove()
+    humanPlayerMove()
