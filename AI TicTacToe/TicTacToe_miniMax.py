@@ -87,6 +87,8 @@ def winner(mark):
         return True
     else:
         return False
+    
+
 
 #Cheking to see if the game is DRAW  
 def drawChecker():
@@ -106,8 +108,8 @@ def computerPlayerMove():
     return
 
 #Code for the AI to calulate the best move for the node
-def aiMove():
-    bestScore = -900
+def aiMovexxx():
+    bestScore = -999
     bestMove = 0
                 
     for key in tBoard.keys():                       #looping through all the empty spaces inside the dictionary and calculating the minimax for each key
@@ -121,6 +123,24 @@ def aiMove():
     insertLetter(computer, bestMove)                #inserting computer letter (X) in the board at the place which may lead to the victory
     return
 
+#same exact replica of aiMovexxx() bt if I run it with the aiMovexxx() the AI doesnt work!! I WANNA PULL MY HAIR
+def aiMove():
+    bestScore = -999
+    bestMove = 0
+
+    for key in tBoard.keys():
+        if tBoard[key] == ' ':
+            tBoard[key] = computer
+            score = miniMax(tBoard, False)
+            tBoard[key] = ' '
+            if score > bestScore:
+                bestScore = score 
+                bestMove = key
+    insertLetter(computer, bestMove)
+    return 
+
+
+
 def miniMax(tBoard, maximizing):
     if winner(computer):
         return 1
@@ -130,7 +150,7 @@ def miniMax(tBoard, maximizing):
         return 0
     
     if maximizing:
-        bestScore = -900
+        bestScore = -999
 
         for key in tBoard.keys():
             if tBoard[key] == ' ':
@@ -143,7 +163,7 @@ def miniMax(tBoard, maximizing):
         return bestScore
     
     else:
-        bestScore = 900
+        bestScore = 999
         for key in tBoard.keys():
             if tBoard[key] == ' ':
                 tBoard[key] = player
@@ -153,7 +173,6 @@ def miniMax(tBoard, maximizing):
                 if score < bestScore:
                     bestScore = score
         return bestScore
-    
 
 #Driver starts here
 print("\n")
@@ -161,7 +180,7 @@ printBoard(tBoard)
 
 #Creating a game loop
 while not winnerChecker():
-    
-    #aiMove()
+    #aiMovexxx
+    aiMove()
     humanPlayerMove()
-    computerPlayerMove()
+    #computerPlayerMove()

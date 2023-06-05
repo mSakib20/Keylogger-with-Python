@@ -88,6 +88,7 @@ def playerMove():
     position = int(input("Enter a position for 'O': "))
     insertLetter(player, position)
     return 
+###CODE FOR DEBUG####
 
 def compMove():
     bestScore = -800
