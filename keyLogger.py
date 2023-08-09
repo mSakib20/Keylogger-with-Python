@@ -32,3 +32,7 @@ def send_email():               #defining a function called 'send_email'
         print('Email sent successfully XD')                        #printing a message if the email is sent successfully
     except:
         print('Error!!! email was not sent...')                      #printing a message if the email is not sent successfully
+
+while True:                                                     #creating an infinite loop
+    time.sleep(21600)                                           #setting the time interval for sending the email to 6 hours
+    send_email()                                                #calling the 'send_email' function
